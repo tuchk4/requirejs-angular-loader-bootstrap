@@ -9,7 +9,7 @@ define(function(require) {
 
 
     for (var i = 0; i < modules.length; i++){
-        ngModules.push('modules/' + modules[i] + '/index');
+        ngModules.push('modules/' + modules[i] + '/includes');
     }
 
     /**
