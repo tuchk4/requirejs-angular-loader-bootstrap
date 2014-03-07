@@ -1,6 +1,5 @@
 define(function(require) {
-
-    var module = require('modules/router/router');
+    var module = angular.module('router');
 
     module.config([
         '$routeProvider',
@@ -15,6 +14,4 @@ define(function(require) {
             });
         }
     ]);
-
-    return module;
 });

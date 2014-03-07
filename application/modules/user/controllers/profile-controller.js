@@ -1,5 +1,5 @@
-define(function(require) {
-    var module = require('../user');
+define(function() {
+    var module = angular.module('user');
 
     module.controller('user.profile-controller', [
         '$scope',
