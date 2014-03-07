@@ -26,8 +26,4 @@ requirejs.config({
     }
 });
 
-
-// define globals
-window.APPLICATION_NAME = 'dev-js-test';
-
 require(['app']);

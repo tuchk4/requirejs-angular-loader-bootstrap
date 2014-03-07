@@ -49,9 +49,13 @@ define(['angular', 'app-config'], function(ng, config) {
     var dependencies = [],
       configs = arguments;
 
+    window.APP_MODULES = {};
+
     for (var i = 0; i < configs.length; i++){
 
       validate(configs[i]);
+
+      window.APP_MODULES[configs[i]g['name']] = configs[i];
 
       if (configs[i].hasOwnProperty('dependencies')){
         dependencies = dependencies.concat(configs[i].dependencies);
