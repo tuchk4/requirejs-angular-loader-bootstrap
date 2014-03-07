@@ -1,9 +1,19 @@
 <html>
 <head>
     <title>JS dev tests</title>
+    <link rel="stylesheet" href="/assets/style.css"/>
 </head>
 <body>
     <div id="my-app">
+        <div id="loaders">
+            <div id="application-loading" ng-hide="loaded">
+                Application loading
+            </div>
+            <div id="application-spinner" ng-show="spinner">
+                Loading
+            </div>
+        </div>
+
         <div ng-view></div>
     </div>
     <script src="bower_components/requirejs/require.js" data-main="application/boot"></script>

@@ -3,8 +3,19 @@ define(function() {
 
     module.controller('user.profile-controller', [
         '$scope',
-        function($scope){
-            $scope.name = (new Date).getUTCMilliseconds();
+        '$timeout',
+        'app.spinner',
+        function(
+          $scope,
+          $timeout,
+          spinner
+        ){
+            spinner.show();
+
+            $timeout(function(){
+              spinner.hide();
+              $scope.name = (new Date).getUTCMilliseconds();
+            },1000);
         }
     ]);
 });

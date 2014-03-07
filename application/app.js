@@ -20,12 +20,8 @@ define(['angular', 'app-config'], function(ng, config) {
 
 
   var path = {
-    module: function(name){
-      return paths.module.replace(/\{name\}/g, name);
-    },
-
     config: function(name){
-      return paths.config.replace('{name}', name);
+      return paths.config.replace(/\{name\}/g, name);
     }
   };
 
@@ -104,8 +100,7 @@ define(['angular', 'app-config'], function(ng, config) {
 
 
         for (key in includes){
-          if (includes.hasOwnProperty(key) && schema.indexOf(key)){
-
+          if (includes.hasOwnProperty(key) && -1 != schema.indexOf(key)){
             components = components.concat(includes[key].map(function(dependency){
               return 'modules/' + name + '/' + key + '/' + dependency
             }));
@@ -144,5 +139,8 @@ define(['angular', 'app-config'], function(ng, config) {
   };
 
   console.time('Modules loaded');
-  load(modules);
+  setTimeout(function(){
+    load(modules);
+  }, 3000);
+
 });

@@ -10,7 +10,7 @@ define(function() {
      * Modules paths
      */
     paths: {
-      config: 'modules/{name}/config'
+      config: 'modules/{name}/{name}-config'
     },
 
     modules: {
@@ -30,8 +30,9 @@ define(function() {
      */
      list: [
        'router',
-       'user'
-      ]
+       'user',
+       'app'
+     ]
     }
    }
 });
