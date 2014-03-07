@@ -1,5 +1,7 @@
 Modules configuration
 =====================
+
+```javascript
 /**
  * Module name for automatic creation
  */
@@ -37,10 +39,11 @@ configure: [
     'routing',                          // module/{module-name}/configure/routing.js
     'resource-url-config'               // module/{module-name}/configure/resource-url-config.js
 ]
+```
+    
+Flow:
 
-
-
-LOAD DEPENDENCIES (@dependencies)
-    -> CREATE MODULE (@name, @extends)
-    -> LOAD COMPONENTS (@components)
-    -> CONFIGURE (@configure)
+    LOAD DEPENDENCIES (@dependencies)
+        -> CREATE MODULE (@name, @extends)
+        -> LOAD COMPONENTS (@components)
+        -> CONFIGURE (@configure)`
