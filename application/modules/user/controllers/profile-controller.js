@@ -1,21 +1,26 @@
-define(function() {
-    var module = angular.module('user');
+define(function(require) {
 
-    module.controller('user.profile-controller', [
-        '$scope',
-        '$timeout',
-        'app.spinner',
-        function(
-          $scope,
-          $timeout,
-          spinner
-        ){
-            spinner.show();
+  var module = require('modules/user/user');
 
-            $timeout(function(){
-              spinner.hide();
-              $scope.name = (new Date).getUTCMilliseconds();
-            },1000);
-        }
-    ]);
+  module.controller('user.profile-controller', [
+    '$scope',
+    '$timeout',
+    'app.provider.spinner',
+    function(
+        $scope,
+        $timeout,
+        spinner
+        ) {
+      spinner.show();
+
+      var phrases = {
+        greetings: 'Hello {name}!'
+      };
+
+      $timeout(function() {
+        spinner.hide();
+        $scope.greetings = phrases.greetings.replace('{name}', (new Date()).getUTCMilliseconds());
+      },1000);
+    }
+  ]);
 });

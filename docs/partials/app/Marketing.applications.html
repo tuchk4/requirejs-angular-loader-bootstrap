@@ -1,0 +1,62 @@
+<h1><code ng:non-bindable="">Marketing:applications</code>
+<div><span class="hint"></span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="marketing-page marketing-applications-page"><p>Widget that allows to pick an application from the list</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/app/Marketing.ApplicationsService">ApplicationsService</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;applications
+       model="{Number}"
+       item="{Object}"
+       empty="{Boolean}"
+       empty-text="{String}"&gt;
+&lt;/applications&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>model</td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="marketing-page marketing-applications-page"><p>selected application ID</p>
+</div></td></tr><tr><td>item</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="marketing-page marketing-applications-page"><p>selected application object</p>
+</div></td></tr><tr><td>empty</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="marketing-page marketing-applications-page"><p>allow empty option</p>
+</div></td></tr><tr><td>emptyText</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="marketing-page marketing-applications-page"><p>text on empty option</p>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="marketing-page marketing-applications-page"><p>The below example shows 4 linked controls: <code>applications</code>, <code>networks</code>, <code>clusters</code>, <code>devices</code></p>
+<pre class="prettyprint linenums">
+&lt;div class="item"&gt;
+&lt;label&gt;Application:&lt;/label&gt;
+&lt;applications
+ng-model="filter.appId"
+item="appItem"
+empty="1"&gt;&lt;/applications&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+&lt;label&gt;Network:&lt;/label&gt;
+&lt;networks
+ng-model="filter.netId"
+empty="1"
+item="netItem"
+restrict-to-ids="appItem.net_ids"&gt;&lt;/networks&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+&lt;label&gt;Server:&lt;/label&gt;
+&lt;clusters
+ng-model="filter.clusterId"
+empty="1"
+items="netItem.clusters"
+&gt;&lt;/clusters&gt;
+&lt;/div&gt;
+
+&lt;div class="item" ng-if="netItem.support_different_devices"&gt;
+&lt;label&gt;Device:&lt;/label&gt;
+&lt;devices
+ng-model="filter.deviceId"
+empty="1"&gt;&lt;/devices&gt;
+&lt;/div&gt;
+</pre>
+<p></example></p>
+</div></div>
+</div>
