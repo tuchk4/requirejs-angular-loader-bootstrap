@@ -3,10 +3,10 @@
  */
 define(function(require) {
 
-  require('./app');
+  require('module!application');
 
   /**
    * Include providers
    */
-  require('./src/providers/spinner');
+  require('service!providers.spinner');
 });

@@ -6,10 +6,12 @@ define(function(require) {
     '$scope',
     '$timeout',
     'app.provider.spinner',
+    'user.factory.a',
     function(
         $scope,
         $timeout,
-        spinner
+        spinner,
+        a
         ) {
       spinner.show();
 
@@ -19,8 +21,12 @@ define(function(require) {
 
       $timeout(function() {
         spinner.hide();
+
+        a.set('new a');
+
         $scope.greetings = phrases.greetings.replace('{name}', (new Date()).getUTCMilliseconds());
-      },1000);
+        $scope.greetings = a.get();
+      });
     }
   ]);
 });

@@ -3,7 +3,7 @@
  */
 define(function(require) {
 
-  require('./user');
+  require('module!user');
 
   /**
    * Include directives
@@ -11,18 +11,18 @@ define(function(require) {
   //require('/resources/directives/*');
 
   /**
-   * Include providers
+   * Include factories
    */
-  //require('/src/providers/*');
+  require('service!factory.a');
 
   /**
    * Include controllers
    */
-  require('./controllers/profile-controller');
-
+  require('controller!profile-controller');
+  require('controller!test-controller');
 
   /**
    * Require configs
    */
-  require('./resources/configs/main');
+  require('config!main');
 });

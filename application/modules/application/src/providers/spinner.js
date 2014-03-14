@@ -1,6 +1,6 @@
 define(function(require) {
 
-  var module = require('modules/app/app');
+  var module = require('module!application');
 
   module.provider('app.provider.spinner', function() {
     var key = 'spinner';

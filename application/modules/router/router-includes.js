@@ -3,10 +3,10 @@
  */
 define(function(require) {
 
-  require('./router');
+  require('module!router');
 
   /**
    * Require configs
    */
-  require('./resources/configs/main');
+  require('config!main');
 });
