@@ -8,5 +8,5 @@ define(function(require) {
   /**
    * Require configs
    */
-  require('config!main');
+  require('config!html5Mode');
 });
