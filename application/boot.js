@@ -9,6 +9,8 @@ requirejs.config({
     'moment': '../bower_components/moment/moment',
     'jquery': '../bower_components/jquery/jquery',
     'tv4': '../bower_components/tv4/tv4',
+
+    'base': 'plugins/base',
     'template': 'plugins/template',
     'controller': 'plugins/controller',
     'service': 'plugins/service',
