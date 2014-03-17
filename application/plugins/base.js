@@ -15,8 +15,8 @@ define(function(){
       var structure = config.structure;
 
       if (!structure.hasOwnProperty('module')
-            || !structure.module.hasOwnProperty('path')
-            || !structure.hasOwnProperty('prefix')){
+        || !structure.module.hasOwnProperty('path')
+        || !structure.hasOwnProperty('prefix')){
 
         throw new Error('Modules structure should be defined');
       }
@@ -33,10 +33,24 @@ define(function(){
     {
 
       if (!structure.hasOwnProperty(type)
-            && !structure[type].hasOwnProperty('path')){
+        && !structure[type].hasOwnProperty('path')){
 
         throw new Error('Structure for ' + type + ' should be defined');
       }
+    },
+
+    getCurrentUrl: function(req)
+    {
+      if (req.hasOwnProperty('toUrl')){
+
+        // toUrl
+        return req.toUrl('.').split('?')[0];
+      } else {
+
+        // Normalize
+        return req('.').split('?')[0];
+      }
+
     },
 
     /**
@@ -105,7 +119,7 @@ define(function(){
      */
     process: function(type, name, req, onload, config)
     {
-      var reqPath = this.reqPath(type, name, config, req.toUrl('.'));
+      var reqPath = this.reqPath(type, name, config, this.getCurrentUrl(req));
 
       req([reqPath], function(value){
         onload(value);
@@ -131,7 +145,7 @@ define(function(){
       var path = structure[type].path
         .replace('{' + type + '}', component);
 
-      return  this.path(path, config, url);
+      return this.path(path, config, url);
     },
 
     /**
@@ -142,17 +156,16 @@ define(function(){
      */
     normalize: function (name, normalize)
     {
+      if (name.split(':').length == 1){
 
-        if (name.split(':').length == 1){
+        var config = requirejs.s.contexts._.config;
+        var module = this.getCurrentModule(config, config.baseUrl  + this.getCurrentUrl(normalize));
 
-          var config = requirejs.s.contexts._.config;
-          var module = this.getCurrentModule(config, config.baseUrl  + normalize('.'));
+        return module + ':' + name;
 
-          return module + ':' + name;
-
-        } else {
-          return name;
-        }
+      } else {
+        return name;
       }
+    }
   }
 });

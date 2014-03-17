@@ -23,7 +23,7 @@ define(['base'], function(base){
         .replace('{template}', template)
         .replace('{extension}', extension);
 
-      var reqPath = base.path(path, config, req.toUrl('.'));
+      var reqPath = base.path(path, config, base.getCurrentUrl(req));
 
 
       req(['text!' + reqPath], function(value){

@@ -6,7 +6,7 @@ define(['base'], function(base){
       if (name.split(':').length == 1){
 
         var config = requirejs.s.contexts._.config;
-        var module = base.getCurrentModule(config, config.baseUrl  + normalize('.'));
+        var module = base.getCurrentModule(config, config.baseUrl  + base.getCurrentUrl(normalize));
 
         if (name == '@'){
           return module;
@@ -28,13 +28,13 @@ define(['base'], function(base){
       var module = base.value(name);
 
       if (module == ''){
-          module = base.getCurrentModule(config, req.toUrl('.'));
+        module = base.getCurrentModule(config, base.getCurrentUrl(req));
       }
 
       var path = structure.module.path
         .replace('{module}', module);
 
-      var reqPath = base.path(path, config, req.toUrl('.'));
+      var reqPath = base.path(path, config, base.getCurrentUrl(req));
 
       req([reqPath], function(value){
         onload(value);
