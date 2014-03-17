@@ -1,6 +1,12 @@
 define(function(){
   return {
-    validate : function(config){
+    /**
+     *
+     * @param config
+     * @param type
+     */
+    validate : function(config, type)
+    {
 
       if (!config.hasOwnProperty('structure')){
         throw new Error('Structure should be defined');
@@ -9,46 +15,144 @@ define(function(){
       var structure = config.structure;
 
       if (!structure.hasOwnProperty('module')
-            && !structure.module.hasOwnProperty('path')
-            && !structure.hasOwnProperty('baseUrl')){
+            || !structure.module.hasOwnProperty('path')
+            || !structure.hasOwnProperty('prefix')){
 
         throw new Error('Modules structure should be defined');
       }
+
+      this.validateType(structure, type);
     },
 
-    validateTemplate: function(structure){
+    /**
+     *
+     * @param structure
+     * @param type
+     */
+    validateType: function(structure, type)
+    {
 
-      if (!structure.hasOwnProperty('template')
-            && (!structure.template.hasOwnProperty('path')
-            && !structure.template.hasOwnProperty('extension'))){
+      if (!structure.hasOwnProperty(type)
+            && !structure[type].hasOwnProperty('path')){
 
-        throw new Error('Structure for template should be defined');
+        throw new Error('Structure for ' + type + ' should be defined');
       }
     },
 
-    path: function(name, structure, url){
-      var include = name.split(':');
+    /**
+     *
+     * @param config
+     * @param url
+     * @returns {*}
+     */
+    getCurrentModule: function(config, url)
+    {
+      var baseUrl = config.baseUrl;
+      var prefix = config.structure.prefix;
 
-      var module, item;
+      return url.replace(
+        new RegExp('^.*'+(baseUrl + prefix.replace('{module}', ''))),
+        '').split('/')[0];
+    },
 
-      if (include.length == 1){
-        item = include[0];
-        var current = url;
-        var baseUrl = structure.baseUrl;
+    /**
+     *
+     * @param path
+     * @param config
+     * @param url
+     * @returns {string}
+     */
+    path: function(path, config, url)
+    {
+      var prefix = config.structure.prefix;
+      var module = this.getCurrentModule(config, url);
 
-        module = current.replace(new RegExp('^.*'+baseUrl), '').split('/')[0];;
+      return prefix.replace('{module}', module) + path;
+    },
 
-      } else if (include.length == 2) {
-        module =  include[0];
-        item =  include[1];
+    /**
+     *
+     * @param name
+     * @returns {*}
+     */
+    value: function(name)
+    {
+      var parts = name.split(':');
+      var placeholder;
+
+      if (parts.length == 1){
+        placeholder = parts[0];
+      } else if (parts.length == 2) {
+        placeholder =  parts[1];
       } else {
-        throw new Error('Invalid require path format for template plugin')
+        throw new Error('Invalid require path format for structure plugin');
       }
 
-      return {
-        module: module,
-        item: item
+      if (placeholder[0] == '@'){
+        placeholder = placeholder.substr(1);
       }
-    }
+
+      return placeholder;
+    },
+
+    /**
+     *
+     * @param type
+     * @param name
+     * @param req
+     * @param onload
+     * @param config
+     */
+    process: function(type, name, req, onload, config)
+    {
+      var reqPath = this.reqPath(type, name, config, req.toUrl('.'));
+
+      req([reqPath], function(value){
+        onload(value);
+      });
+    },
+
+    /**
+     *
+     * @param type
+     * @param name
+     * @param config
+     * @param url
+     * @returns {string}
+     */
+    reqPath: function (type, name, config, url)
+    {
+      this.validate(config, type);
+
+      var structure = config.structure;
+
+      var component = this.value(name);
+
+      var path = structure[type].path
+        .replace('{' + type + '}', component);
+
+      return  this.path(path, config, url);
+    },
+
+    /**
+     *
+     * @param name
+     * @param normalize
+     * @returns {*}
+     */
+    normalize: function (name, normalize)
+    {
+
+        if (name.split(':').length == 1){
+
+          var config = requirejs.s.contexts._.config;
+          var module = this.getCurrentModule(config, config.baseUrl  + normalize('.'));
+
+          return module + ':' + name;
+
+        } else {
+          return name;
+        }
+      }
   }
 });

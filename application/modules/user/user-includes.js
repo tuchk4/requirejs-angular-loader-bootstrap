@@ -3,7 +3,8 @@
  */
 define(function(require) {
 
-  require('module!user');
+  require('module!@');
+
 
   /**
    * Include directives
@@ -13,7 +14,7 @@ define(function(require) {
   /**
    * Include factories
    */
-  require('service!factory.a');
+  require('service!factory/a');
 
   /**
    * Include controllers

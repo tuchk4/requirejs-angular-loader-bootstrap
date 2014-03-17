@@ -20,28 +20,50 @@ requirejs.config({
     'filter': 'plugins/filter'
   },
   structure: {
-    baseUrl: '/application/modules/',
+    /**
+     * requirejs.config.baseUrl + structure.prefix
+     *
+     * requirejs.config.baseUrl = '/application'
+     * structure.prefix = modules/{module}
+     * {module} - module name
+     *
+     * result:
+     *
+     * application/modules/{module}
+     */
+    prefix: 'modules/{module}',
+
+    /**
+     * require
+     */
     module: {
-      path: 'modules/{module}/{module}'
+      path: '/{module}'
     },
+
+    /**
+     * if current module - foo:
+     *
+     * require('template!boo')
+     * require('template!foo:boo')
+     */
     template: {
-      path: 'modules/{module}/resources/views/{template}.{extension}',
+      path: '/resources/views/{template}.{extension}',
       extension: 'html'
     },
     controller: {
-      path: 'modules/{module}/controllers/{controller}'
+      path: '/controllers/{controller}'
     },
     service: {
-      path: 'modules/{module}/src/{service}'
+      path: '/src/{service}'
     },
     config: {
-      path: 'modules/{module}/resources/configs/{config}'
+      path: '/resources/configs/{config}'
     },
     directive: {
-      path: 'modules/{module}/resources/directives/{directive}'
+      path: '/resources/directives/{directive}'
     },
     filter: {
-      path: 'modules/{module}/resources/filter/{filter}'
+      path: '/resources/filter/{filter}'
     }
   },
   shim: {

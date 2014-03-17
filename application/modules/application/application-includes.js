@@ -3,10 +3,15 @@
  */
 define(function(require) {
 
-  require('module!application');
+  require('module!@');
+
+
+  require('service!factory/a');
+
+  require('controller!profile-controller');
 
   /**
    * Include providers
    */
-  require('service!providers.spinner');
+  require('service!providers/spinner');
 });

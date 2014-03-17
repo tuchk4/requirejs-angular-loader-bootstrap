@@ -1,7 +1,7 @@
 define(function(require){
   var module = require('module!@');
 
-  module.service('user.factory.a', [function(){
+  module.service('application.factory.a', [function(){
 
 
       var a = 'd';

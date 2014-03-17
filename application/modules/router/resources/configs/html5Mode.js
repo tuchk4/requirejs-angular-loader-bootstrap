@@ -1,6 +1,6 @@
 define(function(require) {
 
-  var module = require('module!router');
+  var module = require('module!@');
 
   module.config(['$locationProvider',
     function($locationProvider) {

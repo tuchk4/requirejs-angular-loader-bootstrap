@@ -1,13 +1,13 @@
 define(function(require) {
 
-  var module = require('module!router');
+  var module = require('module!@');
 
   module.config([
     '$routeProvider',
     function($routeProvider) {
 
       $routeProvider.when('/', {
-        template: require('template!user:profile'),
+        template: require('template!profile'),
         controller: 'user.profile-controller',
         reloadOnSearch: false,
         resolve: {
@@ -16,7 +16,7 @@ define(function(require) {
 
       $routeProvider.when('/test.html', {
         template: require('template!profile'),
-        controller: 'user.test-controller',
+        controller: 'application.profile-controller',
         reloadOnSearch: false,
         resolve: {
         }

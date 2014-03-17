@@ -3,7 +3,7 @@
  */
 define(function(require) {
 
-  require('module!router');
+  require('module!@');
 
   /**
    * Require configs

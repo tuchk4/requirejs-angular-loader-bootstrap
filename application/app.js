@@ -1,5 +1,6 @@
 define(function(require) {
 
+
   require('modules/user/user-includes');
   require('modules/router/router-includes');
   require('modules/application/application-includes');

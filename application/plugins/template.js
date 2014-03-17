@@ -1,21 +1,32 @@
 define(['base'], function(base){
   return {
+
+    normalize: function (name, normalize) {
+
+      return base.normalize(name, normalize);
+    },
+
     load: function (name, req, onload, config) {
 
-      base.validate(config);
+      base.validate(config, 'template');
 
       var structure = config.structure;
 
-      base.validateTemplate(structure);
+      var template = base.value(name);
 
-      var items = base.path(name, structure, req.toUrl('.'));
+      var extension = 'html';
+      if (structure.template.hasOwnProperty('extension')){
+        extension = structure.template.extension;
+      }
 
       var path = structure.template.path
-        .replace('{module}', items.module)
-        .replace('{template}', items.item)
-        .replace('{extension}', structure.template.extension);
+        .replace('{template}', template)
+        .replace('{extension}', extension);
 
-      req(['text!' + path], function(value){
+      var reqPath = base.path(path, config, req.toUrl('.'));
+
+
+      req(['text!' + reqPath], function(value){
         onload(value);
       });
     }

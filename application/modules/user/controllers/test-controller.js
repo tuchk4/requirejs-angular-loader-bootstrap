@@ -1,6 +1,6 @@
 define(function(require) {
 
-  var module = require('modules/user/user');
+  var module = require('module!@');
 
   module.controller('user.test-controller', [
     '$scope',

@@ -1,33 +1,44 @@
-define(function(){
+define(['base'], function(base){
   return {
+
+    normalize: function (name, normalize) {
+
+      if (name.split(':').length == 1){
+
+        var config = requirejs.s.contexts._.config;
+        var module = base.getCurrentModule(config, config.baseUrl  + normalize('.'));
+
+        if (name == '@'){
+          return module;
+        } else {
+          return module + ':' + name;
+        }
+
+      } else {
+        return name;
+      }
+    },
 
     load: function (name, req, onload, config) {
 
-      if (!config.hasOwnProperty('structure')){
-        throw new Error('Structure should be defined');
-      }
+      base.validate(config, 'module');
 
       var structure = config.structure;
 
-      if (!structure.hasOwnProperty('module')
-            && !structure.module.hasOwnProperty('path')
-            && !structure.hasOwnProperty('baseUrl')){
-        throw new Error('Module for template should be defined');
+      var module = base.value(name);
+
+      if (module == ''){
+          module = base.getCurrentModule(config, req.toUrl('.'));
       }
 
-      if (!name){
-        throw new Error('Module name should be defined');
-      }
-
-
-      // TODO: change replace at other modules with regexp -g
       var path = structure.module.path
-        .replace(/\{module\}/g, name);
+        .replace('{module}', module);
 
-      req([path], function(value){
+      var reqPath = base.path(path, config, req.toUrl('.'));
+
+      req([reqPath], function(value){
         onload(value);
       });
-
     }
   }
 });
