@@ -10,14 +10,14 @@ requirejs.config({
     'jquery': '../bower_components/jquery/jquery',
     'tv4': '../bower_components/tv4/tv4',
 
-    'base': 'plugins/base',
-    'template': 'plugins/template',
-    'controller': 'plugins/controller',
-    'service': 'plugins/service',
-    'module': 'plugins/module',
-    'config': 'plugins/config',
-    'directive': 'plugins/directive',
-    'filter': 'plugins/filter'
+    'base': '../bower_components/requirejs-angualr-loader/src/base',
+    'template': '../bower_components/requirejs-angualr-loader/src/template',
+    'controller': '../bower_components/requirejs-angualr-loader/src/controller',
+    'service': '../bower_components/requirejs-angualr-loader/src/service',
+    'module': '../bower_components/requirejs-angualr-loader/src/module',
+    'config': '../bower_components/requirejs-angualr-loader/src/config',
+    'directive': '../bower_components/requirejs-angualr-loader/src/directive',
+    'filter': '../bower_components/requirejs-angualr-loader/src/filter'
   },
   structure: {
     /**
