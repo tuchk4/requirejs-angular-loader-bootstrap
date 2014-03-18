@@ -1,6 +1,8 @@
 angularjs-requirejs-bootstrap
 =============================
 
+Depends on: https://github.com/tuchk4/requirejs-angular-loader
+
 Bootstrap for angularjs + requirejs application and module separating
 
 
