@@ -61,74 +61,10 @@ module.exports = function(grunt) {
           paths: vendors.paths
         }
       }
-    },
-
-    connect: {
-      docs: {
-        options: {
-          base: ['docs'],
-          port: 9010,
-          debug: true,
-          open: true,
-          livereload: true
-        }
-      }
-    },
-
-    ngdocs: {
-      options: {
-        dest: 'docs',
-        html5Mode: false,
-        title: 'My docs'
-      },
-      app: {
-        src: ['application/modules/**/*.js']
-      }
-    },
-
-    jshint: {
-      app: ['application/**/*.js']
-    },
-
-    closureLint: {
-      app:{
-        closureLinterPath :'',
-        command: 'gjslint',
-        src: [ 'application/**' ],
-        options: {
-          stdout: true,
-          strict: true
-        }
-      }
-    },
-    closureFixStyle: {
-      app:{
-        closureLinterPath : '',
-        command: 'fixjsstyle',
-        src: [ 'application/**' ],
-        options: {
-          stdout: true,
-          strict: true
-        }
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-ngdocs');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-closure-linter');
-
   grunt.registerTask('default', ['requirejs:app', 'requirejs:vendors']);
-  grunt.registerTask('lint', ['jshint:app']);
-  grunt.registerTask('docs', ['ngdocs']);
-  grunt.registerTask('servedocs', ['connect:docs', 'watch:docs']);
 
-  grunt.registerTask('checkstyle', ['closureLint:app']);
-  grunt.registerTask('fixstyle', ['closureFixStyle:app']);
 };
