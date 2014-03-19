@@ -4,9 +4,7 @@
 define(function(require) {
   var ng = require('angular');
 
-  require('angular-route');
-
-  var module = ng.module('router', ['ngRoute']);
+  var module = ng.module('foo', []);
 
   return module;
 });

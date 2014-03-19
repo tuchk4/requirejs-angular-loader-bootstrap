@@ -6,10 +6,13 @@ define(function(require) {
   var module = require('module!@');
 
   /**
-   * Include providers
+   * Include controllers
    */
-  require('service!provider/spinner');
-  require('service!factory/greeter');
+  require('controller!beer');
 
+
+  /**
+   * Require configs
+   */
   require('config!main')(module);
 });

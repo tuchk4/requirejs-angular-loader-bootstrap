@@ -3,12 +3,7 @@ requirejs.config({
   paths: {
     'angular': '../bower_components/angular/angular',
     'angular-route': '../bower_components/angular-route/angular-route',
-    'angular-cache': '../bower_components/angular-cache/dist/angular-cache',
-    'angular-resource': '../bower_components/angular-resource/angular-resource',
     'text': '../bower_components/requirejs-text/text',
-    'moment': '../bower_components/moment/moment',
-    'jquery': '../bower_components/jquery/jquery',
-    'tv4': '../bower_components/tv4/tv4',
 
     'base': '../bower_components/requirejs-angualr-loader/src/base',
     'template': '../bower_components/requirejs-angualr-loader/src/template',
@@ -138,8 +133,6 @@ requirejs.config({
     }
   }
 });
-
-
 
 console.time('application loading');
 require(['app']);

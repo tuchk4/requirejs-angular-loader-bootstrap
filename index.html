@@ -8,11 +8,18 @@
 </head>
 <body>
     <div id="my-app">
+
         <div id="loaders">
             <div id="application-spinner" ng-show="spinner">
                 Loading
             </div>
         </div>
+
+        <ul>
+            <li><a href="/">Go to home, you are drunk</a></li>
+            <li><a href="/foo/hello">Go to foo</a></li>
+            <li><a href="/bar/beer">Go to bar!!1</a></li>
+        </ul>
 
         <div ng-view></div>
     </div>
@@ -23,7 +30,7 @@
             script.async = false;
 
             if (main){
-                script.setAttribute('data-main',  main);
+                script.setAttribute('data-main', main);
             }
 
             document.getElementsByTagName('head')[0].appendChild(script);

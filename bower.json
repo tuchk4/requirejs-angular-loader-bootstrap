@@ -1,23 +1,16 @@
 {
-  "name": "JS dev test",
+  "name": "requirejs-angular-loader-seed",
   "version": "0.0.0",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "requirejs": "~2.1.9",
-    "angular-resource": "~1.2.6",
     "requirejs-text": "~2.0.10",
-    "moment": "~2.5.0",
-    "angular-cache": "~2.3.0",
     "angular-route": "~1.2.10",
-    "jquery": "~1.7.2",
-    "tv4": "~1.0.11",
     "requirejs-angualr-loader": "tuchk4/requirejs-angular-loader"
   }
 }

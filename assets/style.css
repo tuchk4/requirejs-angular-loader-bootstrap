@@ -427,13 +427,14 @@ th {
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
+    background: #fff;
 }
 
 div#loaders {
     position:absolute;
-    width: 150px;
+    width: 200px;
     top:0;
-    left:0;
+    right:0;
 }
 
 div#application-loading,
@@ -443,12 +444,26 @@ div#application-spinner {
     margin:5px;
 }
 
-div#application-loading{
-    color:#000;
-    border:1px solid #ffcc33;
-}
-
 div#application-spinner {
     color:#000;
-    border:1px solid #000;
+    background: #000;
+    color:#fff;
+}
+
+
+a:link, a:active, a:visited {
+    color:#0073ea;
+}
+
+ a:hover {
+    color:#f600f6;
+}
+
+
+div#hello-page {
+    color:#dd1144;
+}
+
+div#home-page {
+    color:#6eac2c;
 }
