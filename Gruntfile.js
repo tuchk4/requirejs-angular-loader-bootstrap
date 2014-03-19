@@ -2,12 +2,7 @@ module.exports = function(grunt) {
 
   var vendors = {
     list: [
-      'angular-resource',
-      'moment',
-      'angular-cache',
       'angular-route',
-      'jquery',
-      'tv4',
       'requirejs',
       'requirejs-text'
     ],
