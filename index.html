@@ -3,7 +3,7 @@
     <title>JS dev tests</title>
     <link rel="stylesheet" href="/assets/style.css"/>
     <script>
-        window.ENV = 'prod';
+        window.ENV = 'dev';
     </script>
 </head>
 <body>
@@ -37,7 +37,7 @@
         }
 
         if (window.ENV == 'dev'){
-            _addScript('bower_components/requirejs/require.js', 'application/boot');
+            _addScript('bower_components/requirejs/require.js', 'app/boot');
         } else if (window.ENV == 'prod'){
             _addScript('bower_components/requirejs/require.js');
             _addScript('build/vendors.js');

@@ -12,8 +12,8 @@ module.exports = function(grunt) {
     }
   };
 
-  var applicationBootScript = './application/boot.js';
-  var baseUrl = './application';
+  var applicationBootScript = './app/boot.js';
+  var baseUrl = './app';
   var built = {
     vendors: 'build/vendors.js',
     app: 'build/app.js'

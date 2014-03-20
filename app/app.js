@@ -1,6 +1,5 @@
 define(function(require) {
 
-
   require('modules/foo/foo-includes');
   require('modules/bar/bar-includes');
   require('modules/application/application-includes');

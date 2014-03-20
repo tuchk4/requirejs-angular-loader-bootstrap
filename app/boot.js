@@ -1,5 +1,5 @@
 requirejs.config({
-  baseUrl: '/application',
+  baseUrl: '/app',
   paths: {
     'angular': '../bower_components/angular/angular',
     'angular-route': '../bower_components/angular-route/angular-route',
@@ -133,6 +133,7 @@ requirejs.config({
     }
   }
 });
+
 
 console.time('application loading');
 require(['app']);
